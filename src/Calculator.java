@@ -2,14 +2,14 @@ import java.io.*;
 
 /**
  * This program is a calculator with 8 matemathics options, selected by console
- * @author Andrés Pájaro 
+ * @author AndrÃ©s PÃ¡jaro 
  * This file is part if the FED_Practico templates
  * GNU General Public License as published by the Free Software Foundation, version 3.
  */
 public class Calculator {
 	
 	
-	/**
+	 /**
 	 * This function sum 2 variables of the main class 
 	 * @param a
 	 * @param b
@@ -17,8 +17,8 @@ public class Calculator {
 	 */
 	public static int sum(int a, int b) {
 		
-		int c=a+b;
-		return c;
+		int c=a+b;// Sum the parameters a,b 
+		return c;// Return the value of the sum
 	}
 	
 	/**
@@ -29,8 +29,8 @@ public class Calculator {
 	 */
 	public static int subtract(int a, int b) {
 		
-		int c=a-b;
-		return c;
+		int c=a-b;//subtract the parameters a,b 
+		return c; //return the subtract 
 	}
 	
 	/**
@@ -42,9 +42,9 @@ public class Calculator {
 	public static int multi(int a, int b) {
 		
 		if(b==1) {
-			return a;
+			return a;//If the b parameter is equal to 0, return a 
 		}else {
-			return a+multi(a,b-1);
+			return a+multi(a,b-1);//Else, the function multi calls itmself and sum to a, b have a decremente until be equal to 1
 		}
 		
 	}
@@ -57,8 +57,8 @@ public class Calculator {
 	 */
 	public static double div(double a, double b) {
 		
-		double c=a/b;
-		return c;
+		double c=a/b;//Division the a, b parameters 
+		return c;//Return the divison 
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class Calculator {
 	 */
 	public static int pow(int a, int b) {
 		
-		int counter=b;
+		int counter=b;//Create a couter 
 		if (b==0) {
 			return 1;
 		}if(b==1){
@@ -78,7 +78,7 @@ public class Calculator {
 			if (counter == 1) {
 				return a;
 			}else {
-				return a*pow(a,counter-1);
+				return a*pow(a,counter-1);//The pow funtion calls itself and multiplicate to a, b have a decrement until be equal to 1
 			}
 		}
 	}
@@ -93,8 +93,8 @@ public class Calculator {
 	 */
 	public static int MOD (int a, int b) {
 		
-		int c= a%b;
-		return c;
+		int c= a%b;//Find de rest of the division 
+		return c;// Return the mod 
 	}
 	
 
@@ -108,6 +108,25 @@ public class Calculator {
 		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
 		try {
 			
+				bw.write("Enter (1) for sum,(2) for subtraction, (3) for multiplication, (4) for division \n"
+					 +"(5) for power, (6) for square root, (7) for residue of divsion or (0) to exit\n"); //Show the calculator menu to choose the operation 
+				bw.flush();
+			
+			    int op =Integer.parseInt(br.readLine());//Enter the option of the operation
+			    			 		    
+			    if(op==6) {// As the square root only needs one number, will be apart of the other operations
+			    	
+			    	bw.write("Enter the number");
+			    	bw.flush();
+			    	int num=Integer.parseInt(br.readLine());// Enter the number to operate
+			    	bw.write("The square root of "+num+" is: "+Math.sqrt(num));//Call the Math librarie to find the square root if the number and print
+			    	bw.flush();
+			    	
+			    	
+			    }else {
+			  
+			    
+			    
 				bw.write("Enter the first value\n");
 				bw.flush();// Relase de information un the writer buffer
 				int a=Integer.parseInt(br.readLine()); // Create the varibable a and ask for a value 
@@ -115,55 +134,61 @@ public class Calculator {
 				bw.flush();
 				int b=Integer.parseInt(br.readLine());// Create the variable b and ask for a value 
 				 
-				bw.write("Enter (1) for sum,(2) for subtraction, (3) for multiplication, (4) for division \n"
-						 +"(5) for power, (6) for square root, (7) for residue of divsion or (0) to exit\n"); //Show the calculator menu to choose the operation 
-				bw.flush();
 				
-				int option=Integer.parseInt(br.readLine()); //Read a value for the option variable and determine the operation to do	
 				
-				switch (option) { //Create a swtich case depend de option value 
+				
+				
+				switch (op) { //Create a swtich case depend de option value 
 				
 				case 1://This case is sum
 					
 					int sum=sum(a,b); //The sum variable calls the sum function 
 					bw.write("The sum is equal to "+sum+"\n");//Show the sum in to the console
 					bw.flush();
+					break;
 					
 				case 2://This case is subtract
 					
 					int subtrc=subtract(a,b);//The subtract variable calls the subtract function
 					bw.write("The subtraction is equal to "+subtrc+"\n");//Show the subtraction in to the console 
 					bw.flush();
+					break;
 					
 				case 3:
 					
-					int multiplication=multi(a,b);
-					bw.write("The multiplication is equal to "+multiplication+"\n");
+					int multiplication=multi(a,b);//This variable calls the multi function
+					bw.write("The multiplication is equal to "+multiplication+"\n");//Show the multiplication 
 					bw.flush();
+					break;
 					
 				case 4:
 					
-					double division=div(a,b);
-					bw.write("The division is equal to "+division+"\n");
+					double division=div(a,b);//This variable calls the div function 
+					bw.write("The division is equal to "+division+"\n");//Show the result of the division
 					bw.flush();
+					break;
 					
 				case 5:
 					
-					int pow=pow(a,b);
-					bw.write("The pow is equal to "+pow+"\n");
+					int pow=pow(a,b);//This variable calls the pow function
+					bw.write("The pow is equal to "+pow+"\n");//Show the pow
 					bw.flush();
+					break;
 					
 				case 6:
 					
-					
+					break;
 					
 				case 7:
 					
-					bw.write("The residue is equal to "+a%b+"\n");
+					bw.write("The residue is equal to "+a%b+"\n");//This line print the residual (MOD) of the two numbers
 					bw.flush();
+					break;
+					
+					
 				}
-			
-				
+						
+			    }
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
